@@ -45,6 +45,7 @@ namespace ExcelTestSport
                     if (xlWorksheet.Name == codeOfTest)
                     {
                         code = false;
+                        DataBase.GlobalCodeOfTest = codeOfTest;
                         break;
                     }
                 }

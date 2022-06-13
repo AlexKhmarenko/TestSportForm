@@ -10,5 +10,7 @@ namespace ExcelTestSport
     {
 
         public static string[,] GlobalQuestions; //Общедоступный массив с вопросами
+        public static string[,] GlobalTest; //Общедоступный массив с вопросами
+        public static string GlobalCodeOfTest; //Общедоступный массив с вопросами
     }
 }

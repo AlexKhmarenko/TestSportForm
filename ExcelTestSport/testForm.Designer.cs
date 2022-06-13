@@ -50,7 +50,7 @@ namespace ExcelTestSport
             this.AnswerVar2.TabIndex = 5;
             this.AnswerVar2.Text = "AnswerVar2";
             this.AnswerVar2.UseVisualStyleBackColor = true;
-            this.AnswerVar2.Click += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.AnswerVar2.Click += new System.EventHandler(this.AnswerVar2_Click);
             // 
             // AnswerVar3
             // 
@@ -62,7 +62,7 @@ namespace ExcelTestSport
             this.AnswerVar3.TabIndex = 6;
             this.AnswerVar3.Text = "AnswerVar3";
             this.AnswerVar3.UseVisualStyleBackColor = true;
-            this.AnswerVar3.Click += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.AnswerVar3.Click += new System.EventHandler(this.AnswerVar3_Click);
             // 
             // Category
             // 
@@ -73,7 +73,6 @@ namespace ExcelTestSport
             this.Category.Size = new System.Drawing.Size(100, 25);
             this.Category.TabIndex = 7;
             this.Category.Text = "Category";
-            this.Category.Click += new System.EventHandler(this.Category_Click);
             // 
             // AnswerVar1
             // 
@@ -85,8 +84,7 @@ namespace ExcelTestSport
             this.AnswerVar1.TabIndex = 8;
             this.AnswerVar1.Text = "AnswerVar1";
             this.AnswerVar1.UseVisualStyleBackColor = true;
-            this.AnswerVar1.CheckedChanged += new System.EventHandler(this.AnswerVar1_CheckedChanged);
-            this.AnswerVar1.Click += new System.EventHandler(this.checkBox1_Click);
+            this.AnswerVar1.Click += new System.EventHandler(this.AnswerVar1_Click);
             // 
             // AnswerVar4
             // 
@@ -98,6 +96,7 @@ namespace ExcelTestSport
             this.AnswerVar4.TabIndex = 9;
             this.AnswerVar4.Text = "AnswerVar4";
             this.AnswerVar4.UseVisualStyleBackColor = true;
+            this.AnswerVar4.Click += new System.EventHandler(this.AnswerVar4_Click);
             // 
             // QuestionNumber
             // 
@@ -117,7 +116,7 @@ namespace ExcelTestSport
             this.answerBottom.TabIndex = 12;
             this.answerBottom.Text = "ОТВЕТ";
             this.answerBottom.UseVisualStyleBackColor = true;
-            this.answerBottom.Click += new System.EventHandler(this.button1_Click);
+            this.answerBottom.Click += new System.EventHandler(this.answerBottom_Click);
             // 
             // SportType
             // 
