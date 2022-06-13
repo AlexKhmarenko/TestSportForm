@@ -45,7 +45,7 @@ namespace ExcelTestSport
             }
             numberOfQuestions++;
                                                       
-            test = new string[numberOfQuestions, 9];  //создание массива с вариантами ответов нужного размера
+            test = new string[numberOfQuestions, 7];  //создание массива с вариантами ответов нужного размера
                                                       //0 - Вид спорта
                                                       //1 - Категория
                                                       //2 - Вопрос
@@ -119,10 +119,6 @@ namespace ExcelTestSport
                 AnswerVar4.Text = Convert.ToString(test[questionNumber, 6]);
             }
             t1 = DateTime.Now;
-
-            DataBase.GlobalTest = test;
-
-            // numVariants = 0;
         }
 
         public void AnswerVar1_Click(object sender, EventArgs e)
@@ -157,7 +153,6 @@ namespace ExcelTestSport
         private void answerBottom_Click(object sender, EventArgs e)
         {
             questions = DataBase.GlobalQuestions;
-            test = DataBase.GlobalTest;
 
             if (AnswerVar1.Checked == false && 
                 AnswerVar2.Checked == false && 
@@ -174,61 +169,21 @@ namespace ExcelTestSport
 
                 if (AnswerVar1.Checked == true)
                 {
-                    test[questionNumber, 7] = AnswerVar1.Text;
-                    test[questionNumber, 8] = time;
-                    for (int d = 0; questionNumber < questions.GetUpperBound(0) + 1; d++)
-                    {
-                        if (test[questionNumber, 2] == questions[d, 2] && AnswerVar1.Text == questions[d, 3])
-                        {
-                            questions[d, 7] = AnswerVar1.Text;
-                            questions[d, 8] = time;
-                            break;
-                        }
-                    }
+                    FillFinalResult(AnswerVar1.Text, time);
 
                 }
                 else if (AnswerVar2.Checked == true)
                 {
-                    test[questionNumber, 7] = AnswerVar2.Text;
-                    test[questionNumber, 8] = time;
-                    for (int d = 0; questionNumber < questions.GetUpperBound(0) + 1; d++)
-                    {
-                        if (test[questionNumber, 2] == questions[d, 2] && AnswerVar2.Text == questions[d, 3])
-                        {
-                            questions[d, 7] = AnswerVar2.Text;
-                            questions[d, 8] = time;
-                            break;
-                        }
-                    }
+                    FillFinalResult(AnswerVar2.Text, time);
+
                 }
                 else if (AnswerVar3.Checked == true)
                 {
-                    test[questionNumber, 7] = AnswerVar3.Text;
-                    test[questionNumber, 8] = time;
-                    for (int d = 0; questionNumber < questions.GetUpperBound(0) + 1; d++)
-                    {
-                        if (test[questionNumber, 2] == questions[d, 2] && AnswerVar3.Text == questions[d, 3])
-                        {
-                            questions[d, 7] = AnswerVar3.Text;
-                            questions[d, 8] = time;
-                            break;
-                        }
-                    }
+                    FillFinalResult(AnswerVar3.Text, time);
                 }
                 else if (AnswerVar4.Checked == true)
                 {
-                    test[questionNumber, 7] = AnswerVar4.Text;
-                    test[questionNumber, 8] = time;
-                    for (int d = 0; questionNumber < questions.GetUpperBound(0) + 1; d++)
-                    {
-                        if (test[questionNumber, 2] == questions[d, 2] && AnswerVar4.Text == questions[d, 3])
-                        {
-                            questions[d, 7] = AnswerVar4.Text;
-                            questions[d, 8] = time;
-                            break;
-                        }
-                    }
-
+                    FillFinalResult(AnswerVar4.Text, time);
                 }
 
                 if (questionNumber == numberOfQuestions)
@@ -241,7 +196,6 @@ namespace ExcelTestSport
                 else
                 {
                     questionNumber++;
-                    //questions = DataBase.GlobalQuestions;
                     AnswerVar1.Checked = false;
                     AnswerVar2.Checked = false;
                     AnswerVar3.Checked = false;
@@ -250,6 +204,20 @@ namespace ExcelTestSport
                 }
             }
         }
+
+        public void FillFinalResult(string answerVar, string t)
+        {
+            for (int d = 0; questionNumber < questions.GetUpperBound(0) + 1; d++)
+            {
+                if (test[questionNumber, 2] == questions[d, 2] && answerVar == questions[d, 3])
+                {
+                    questions[d, 7] = answerVar;
+                    questions[d, 8] = t;
+                    break;
+                }
+            }
+        }
+
         public void ReportToExcel()
         {
 
@@ -318,7 +286,7 @@ namespace ExcelTestSport
             workSheet.Cells[questionNum + 7, 1].Font.Size = 15;
 
             string currentTime = DateTime.Now.ToString().Replace(':', '_');
-            string fileName = ($"{Environment.CurrentDirectory}\\Report\\1-{currentTime}.xlsx");
+            string fileName = ($"{Environment.CurrentDirectory}\\Report\\{codeOfTest }-{currentTime}.xlsx");
             workBook.SaveAs(fileName);
             //workBook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, $"{Environment.CurrentDirectory}\\Report\\1-{currentTime}.pdf");
 
@@ -331,8 +299,6 @@ namespace ExcelTestSport
             Marshal.ReleaseComObject(excel);
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
-
         }
     }
 }
