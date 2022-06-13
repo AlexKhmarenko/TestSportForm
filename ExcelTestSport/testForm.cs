@@ -150,7 +150,7 @@ namespace ExcelTestSport
             AnswerVar3.Checked = false;
         }
 
-        private void answerBottom_Click(object sender, EventArgs e)
+        private void AnswerBottom_Click(object sender, EventArgs e)
         {
             questions = DataBase.GlobalQuestions;
 
@@ -216,6 +216,23 @@ namespace ExcelTestSport
                     break;
                 }
             }
+        }
+
+        private void ExitBottom_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Хотите прервать тест?", "Окончание теста", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+                Application.Exit();
+        }
+
+        private void ExitBottom_MouseEnter(object sender, EventArgs e)
+        {
+            ExitBottom.ForeColor = Color.Red;
+        }
+
+        private void ExitBottom_MouseLeave(object sender, EventArgs e)
+        {
+            ExitBottom.ForeColor = Color.Black;
         }
 
         public void ReportToExcel()
@@ -288,7 +305,6 @@ namespace ExcelTestSport
             string currentTime = DateTime.Now.ToString().Replace(':', '_');
             string fileName = ($"{Environment.CurrentDirectory}\\Report\\{codeOfTest }-{currentTime}.xlsx");
             workBook.SaveAs(fileName);
-            //workBook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, $"{Environment.CurrentDirectory}\\Report\\1-{currentTime}.pdf");
 
             GC.Collect();
             GC.WaitForPendingFinalizers();

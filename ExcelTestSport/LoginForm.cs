@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using Application = System.Windows.Forms.Application;
 
 namespace ExcelTestSport
 {
@@ -186,6 +187,23 @@ namespace ExcelTestSport
         private void LoginForm_Activated(object sender, EventArgs e)
         {
             codeVariant.Focus();
+        }
+
+        private void exitBottom_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Хотите прервать тест?", "Окончание теста", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+                Application.Exit();
+        }
+
+        private void exitBottom_MouseEnter(object sender, EventArgs e)
+        {
+            exitBottom.ForeColor = Color.Red;
+        }
+
+        private void exitBottom_MouseLeave(object sender, EventArgs e)
+        {
+            exitBottom.ForeColor = Color.Black;
         }
     }
 
